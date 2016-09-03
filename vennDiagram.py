@@ -43,10 +43,12 @@ token = util.prompt_for_user_token(username, scope)
 spotify = spotipy.Spotify(auth=token)
 dylan = '1159991532'
 megan = 'petrichortardis'
+conor = '1159991532'
 dank_tunes = '14VcSdE3lgDQYuXA6GzpHU'
 september = '1cHxarRhQFiANkZE3ZZiy5'
 shooters = '03qWzXsDfZoyGAhFQJwTp2'
-results1 = spotify.user_playlist(dylan, dank_tunes, fields = "tracks")
+zombies2 = '3GGlANCZ2Kb4JOWsoRsSRO'
+results1 = spotify.user_playlist(conor, zombies2, fields = "tracks")
 tracks1 = results1['tracks']
 results2 = spotify.user_playlist(dylan, shooters, fields = "tracks")
 tracks2 = results2['tracks']
