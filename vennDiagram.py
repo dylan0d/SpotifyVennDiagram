@@ -13,7 +13,7 @@ def print_results(sets):
     print "LIST 2"
     print_array(sets[1])
 
-def create_arrays(tracks1, tracks2):
+def extract_duplicates(tracks1, tracks2):
     first_array=[]
     second_array=[]
     duplicate_array=[]
@@ -51,6 +51,6 @@ if __name__ == "__main__":
     tracks1 = results1['tracks']
     results2 = spotify.user_playlist(dylan, shooters, fields = "tracks")
     tracks2 = results2['tracks']
-    sets = create_arrays(tracks1, tracks2)
+    sets = extract_duplicates(tracks1, tracks2)
 
     print_results(sets)
