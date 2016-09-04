@@ -1,13 +1,17 @@
 import spotipy
 import spotipy.util as util
 
-def write_tracks(tracks, f):
-    print len(tracks['items'])
-    for i, item in enumerate(tracks['items']):
-        track = item['track']
-        f.write(("   %d %32.32s %s\n" % (i, track['artists'][0]['name'], track['name'])).encode('utf8'))
-        print("   %d %32.32s " % (i, track['artists'][0]['name'], track['name']))
-    f.close()
+def print_array(tracks):
+    for x in tracks:
+        print x
+
+def print_results(sets):
+    print "DUPLICATES"
+    print_array(sets[2])
+    print "LIST 1"
+    print_array(sets[0])
+    print "LIST 2"
+    print_array(sets[1])
 
 def create_arrays(tracks1, tracks2):
     first_array=[]
@@ -25,41 +29,28 @@ def create_arrays(tracks1, tracks2):
             duplicate_array.append(name)
         else:
             second_array.append(name)
+
     return (first_array,second_array,duplicate_array)
 
+if __name__ == "__main__":
+    scope = 'user-library-read'
+    username = '1159991532'
+
+    token = util.prompt_for_user_token(username, scope)
 
 
+    spotify = spotipy.Spotify(auth=token)
+    dylan = '1159991532'
+    megan = 'petrichortardis'
+    conor = '1159991532'
+    dank_tunes = '14VcSdE3lgDQYuXA6GzpHU'
+    september = '1cHxarRhQFiANkZE3ZZiy5'
+    shooters = '03qWzXsDfZoyGAhFQJwTp2'
+    zombies2 = '3GGlANCZ2Kb4JOWsoRsSRO'
+    results1 = spotify.user_playlist(conor, zombies2, fields = "tracks")
+    tracks1 = results1['tracks']
+    results2 = spotify.user_playlist(dylan, shooters, fields = "tracks")
+    tracks2 = results2['tracks']
+    sets = create_arrays(tracks1, tracks2)
 
-
-
-
-
-scope = 'user-library-read'
-username = '1159991532'
-
-token = util.prompt_for_user_token(username, scope)
-
-
-spotify = spotipy.Spotify(auth=token)
-dylan = '1159991532'
-megan = 'petrichortardis'
-conor = '1159991532'
-dank_tunes = '14VcSdE3lgDQYuXA6GzpHU'
-september = '1cHxarRhQFiANkZE3ZZiy5'
-shooters = '03qWzXsDfZoyGAhFQJwTp2'
-zombies2 = '3GGlANCZ2Kb4JOWsoRsSRO'
-results1 = spotify.user_playlist(conor, zombies2, fields = "tracks")
-tracks1 = results1['tracks']
-results2 = spotify.user_playlist(dylan, shooters, fields = "tracks")
-tracks2 = results2['tracks']
-sets = create_arrays(tracks1, tracks2)
-
-print "DUPLICATES"
-for x in sets[2]:
-    print x
-print "LIST 1"
-for x in sets[0]:
-    print x
-print "LIST 2"
-for x in sets[1]:
-    print x
+    print_results(sets)
