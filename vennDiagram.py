@@ -49,7 +49,7 @@ def extract_duplicates(tracks1, tracks2):
 
 if __name__ == "__main__":
     scope = 'playlist-read-private'
-    username = '1159991532'#raw_input("Please enter your Spotify username: ")
+    username = raw_input("Please enter your Spotify username: ")
     #username = '1159991532'
 
     token = util.prompt_for_user_token(username, scope, '1c5ec05f1b9b4cbab72f6bd0e5cb1d94', '6355c38a9bf9415c98d0217a5a9b0b89',
@@ -58,14 +58,14 @@ if __name__ == "__main__":
 
     spotify = spotipy.Spotify(auth=token)
 
-    #user1 = raw_input("Username of owner of the 1st playlist: ")
-    #playlist1 = raw_input("URI of 1st playlist: ")
-    #user2 = raw_input("Username of owner of the 2nd playlist: ")
-    #playlist2 = raw_input("URI of 2nd playlist: ")
+    user1 = raw_input("Username of owner of the 1st playlist: ")
+    playlist1 = raw_input("URI of 1st playlist: ")
+    user2 = raw_input("Username of owner of the 2nd playlist: ")
+    playlist2 = raw_input("URI of 2nd playlist: ")
 
-    results1 = spotify.user_playlist('1159991532', '14VcSdE3lgDQYuXA6GzpHU', fields = "tracks")
+    results1 = spotify.user_playlist(user1, playlist1, fields = "tracks")
     tracks1 = results1['tracks']
-    results2 = spotify.user_playlist('1159991532', '03qWzXsDfZoyGAhFQJwTp2', fields = "tracks")
+    results2 = spotify.user_playlist(user2, playlist2, fields = "tracks")
     tracks2 = results2['tracks']
 
     sets = extract_duplicates(tracks1, tracks2)
