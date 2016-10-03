@@ -85,12 +85,14 @@ if __name__ == "__main__":
     canvas.create_oval((5*canvas_width)/16, 10, (15*canvas_width/16), canvas_height-10, outline="blue", fill="orange", width=2)
     canvas.create_oval(canvas_width/16, 10, (11*canvas_width)/16, canvas_height-10, outline="red", width=2)
     canvas_id = canvas.create_text(200, 100, anchor="nw")
-    canvas_id2 = canvas.create_text(600, 100, anchor = "nw")
-
+    canvas_id2 = canvas.create_text(900, 100, anchor = "nw")
+    canvas_id3 = canvas.create_text(550, 100, anchor = "nw")
     canvas.pack()
 
     canvas.itemconfig(canvas_id, text=list1)
     canvas.itemconfig(canvas_id2, text=list2)
+    canvas.itemconfig(canvas_id3, text = list3)
+
 
     mainloop()
     print "Exited successfully"
